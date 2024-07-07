@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // exclusive_lasso_project
 arma::vec exclusive_lasso_project(const arma::vec& x, const double& lambda);
 RcppExport SEXP _BCEL_exclusive_lasso_project(SEXP xSEXP, SEXP lambdaSEXP) {
@@ -135,32 +140,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// BiElasso_chooser
-List BiElasso_chooser(const arma::mat& X, arma::vec r_list, const double& q_u, const double& q_v, const double& q_upper, const double& select_upper_u, const double& select_upper_v, const double& B1, const double& B2, const double& pi_thr_l, const double& pi_thr_u, const double& size_per, const double& speed, const int& iter_max, const double& tol, int sparse);
-RcppExport SEXP _BCEL_BiElasso_chooser(SEXP XSEXP, SEXP r_listSEXP, SEXP q_uSEXP, SEXP q_vSEXP, SEXP q_upperSEXP, SEXP select_upper_uSEXP, SEXP select_upper_vSEXP, SEXP B1SEXP, SEXP B2SEXP, SEXP pi_thr_lSEXP, SEXP pi_thr_uSEXP, SEXP size_perSEXP, SEXP speedSEXP, SEXP iter_maxSEXP, SEXP tolSEXP, SEXP sparseSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< const arma::mat& >::type X(XSEXP);
-    Rcpp::traits::input_parameter< arma::vec >::type r_list(r_listSEXP);
-    Rcpp::traits::input_parameter< const double& >::type q_u(q_uSEXP);
-    Rcpp::traits::input_parameter< const double& >::type q_v(q_vSEXP);
-    Rcpp::traits::input_parameter< const double& >::type q_upper(q_upperSEXP);
-    Rcpp::traits::input_parameter< const double& >::type select_upper_u(select_upper_uSEXP);
-    Rcpp::traits::input_parameter< const double& >::type select_upper_v(select_upper_vSEXP);
-    Rcpp::traits::input_parameter< const double& >::type B1(B1SEXP);
-    Rcpp::traits::input_parameter< const double& >::type B2(B2SEXP);
-    Rcpp::traits::input_parameter< const double& >::type pi_thr_l(pi_thr_lSEXP);
-    Rcpp::traits::input_parameter< const double& >::type pi_thr_u(pi_thr_uSEXP);
-    Rcpp::traits::input_parameter< const double& >::type size_per(size_perSEXP);
-    Rcpp::traits::input_parameter< const double& >::type speed(speedSEXP);
-    Rcpp::traits::input_parameter< const int& >::type iter_max(iter_maxSEXP);
-    Rcpp::traits::input_parameter< const double& >::type tol(tolSEXP);
-    Rcpp::traits::input_parameter< int >::type sparse(sparseSEXP);
-    rcpp_result_gen = Rcpp::wrap(BiElasso_chooser(X, r_list, q_u, q_v, q_upper, select_upper_u, select_upper_v, B1, B2, pi_thr_l, pi_thr_u, size_per, speed, iter_max, tol, sparse));
-    return rcpp_result_gen;
-END_RCPP
-}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_BCEL_exclusive_lasso_project", (DL_FUNC) &_BCEL_exclusive_lasso_project, 2},
@@ -170,7 +149,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_BCEL_good_sample", (DL_FUNC) &_BCEL_good_sample, 5},
     {"_BCEL_BiElasso_stable", (DL_FUNC) &_BCEL_BiElasso_stable, 16},
     {"_BCEL_BiElasso_cv", (DL_FUNC) &_BCEL_BiElasso_cv, 17},
-    {"_BCEL_BiElasso_chooser", (DL_FUNC) &_BCEL_BiElasso_chooser, 16},
     {NULL, NULL, 0}
 };
 

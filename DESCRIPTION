@@ -9,3 +9,4 @@ Description: Biclustering with the exclusive lasso.
 License: TBA
 Imports: Rcpp, RcppArmadillo, Matrix, RSpectra, gtools, MASS, methods
 LinkingTo: Rcpp, RcppArmadillo, Matrix, RSpectra
+RoxygenNote: 7.3.2

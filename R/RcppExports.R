@@ -29,7 +29,3 @@ BiElasso_cv <- function(X, r_list, q_u = 0.2, q_v = 0.2, q_upper = 0.5, select_u
     .Call('_BCEL_BiElasso_cv', PACKAGE = 'BCEL', X, r_list, q_u, q_v, q_upper, select_upper_u, select_upper_v, B1, B2, cv_k, pi_thr_l, pi_thr_u, size_per, speed, iter_max, tol, sparse)
 }
 
-BiElasso_chooser <- function(X, r_list, q_u = 0.2, q_v = 0.2, q_upper = 0.5, select_upper_u = 0.45, select_upper_v = 0.45, B1 = 10, B2 = 200, pi_thr_l = 0.65, pi_thr_u = 0.7, size_per = 0.5, speed = 0.3, iter_max = 100L, tol = 0.000001, sparse = 0L) {
-    .Call('_BCEL_BiElasso_chooser', PACKAGE = 'BCEL', X, r_list, q_u, q_v, q_upper, select_upper_u, select_upper_v, B1, B2, pi_thr_l, pi_thr_u, size_per, speed, iter_max, tol, sparse)
-}
-
